@@ -57,6 +57,7 @@ main h1{
 .producto {
     width: 250px;
     padding: 20px;
+    border: 1px solid #ccc;
     border-radius: 15px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
     text-align: center;
@@ -74,6 +75,15 @@ main h1{
     justify-content: center;
     gap: 20px;
     padding: 20px;
+}
+
+#resumen {
+    width: 250px;
+    padding: 15px;
+    margin: 20px auto;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 15px;
 }
 
 .logo{
@@ -135,6 +145,15 @@ main h1{
         width: 100%;
         text-align: center;
     }
+}
+
+.producto-carrito {
+    width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
 }
 
 
