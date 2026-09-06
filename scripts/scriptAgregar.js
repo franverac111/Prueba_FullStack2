@@ -1,4 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+    const sesion = JSON.parse(localStorage.getItem("tcg_sesion"));
+
+    // Descomentar esta sección para activar obligatoriedad de Inicio de sesión como admin
+    //if (!sesion || sesion.rol !== "admin") {
+        //alert("Acceso denegado. Debes iniciar sesión como Administrador.");
+        //window.location.href = "login.html"; // Ventana de login que debe hacer angela
+        //return; // Detiene la ejecución del código
+    //}
     const form = document.getElementById("form-producto");
 
     renderizarTabla();
