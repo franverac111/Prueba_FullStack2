@@ -178,6 +178,70 @@ if (document.getElementById("carrito")) {
     mostrarCarrito();
 }
 
+// =============================
+// VALIDACIÓN DEL LOGIN
+// =============================
+
+const loginForm = document.getElementById("loginForm");
+
+if (loginForm) {
+
+    loginForm.addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+
+        const emailError = document.getElementById("emailError");
+        const passwordError = document.getElementById("passwordError");
+        const loginMessage = document.getElementById("loginMessage");
+
+        // Limpiar mensajes anteriores
+        emailError.textContent = "";
+        passwordError.textContent = "";
+        loginMessage.textContent = "";
+
+        let formularioValido = true;
+
+        // Validar correo
+        if (email === "") {
+            emailError.textContent = "El correo electrónico es obligatorio.";
+            formularioValido = false;
+
+        } else if (email.length > 100) {
+            emailError.textContent = "El correo no puede superar los 100 caracteres.";
+            formularioValido = false;
+
+        } else if (
+            !email.endsWith("@duoc.cl") &&
+            !email.endsWith("@profesor.duoc.cl") &&
+            !email.endsWith("@gmail.com")
+        ) {
+            emailError.textContent =
+                "El correo debe ser @duoc.cl, @profesor.duoc.cl o @gmail.com.";
+            formularioValido = false;
+        }
+
+        // Validar contraseña
+        if (password === "") {
+            passwordError.textContent = "La contraseña es obligatoria.";
+            formularioValido = false;
+
+        } else if (password.length < 4 || password.length > 10) {
+            passwordError.textContent =
+                "La contraseña debe tener entre 4 y 10 caracteres.";
+            formularioValido = false;
+        }
+
+        // Resultado de la validación
+        if (formularioValido) {
+            loginMessage.textContent = "Datos válidos. Puedes continuar.";
+        }
+
+    });
+
+}
 if (document.getElementById("cantidad")) {
     actualizarResumen();
 }
