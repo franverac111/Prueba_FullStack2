@@ -2,12 +2,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const sesion = JSON.parse(localStorage.getItem("tcg_sesion"));
 
-    // Descomentar esta sección para activar obligatoriedad de Inicio de sesión como admin
-    //if (!sesion || sesion.rol !== "admin") {
-        //alert("Acceso denegado. Debes iniciar sesión como Administrador.");
-        //window.location.href = "login.html"; // Ventana de login que debe hacer angela
-        //return; // Detiene la ejecución del código
-    //}
+    
+    if (!sesion || sesion.rol !== "admin") {
+        alert("Acceso denegado. Debes iniciar sesión como Administrador.");
+        window.location.href = "login.html"; // Ventana de login que debe hacer angela
+        return; // Detiene la ejecución del código
+    }
     const form = document.getElementById("form-producto");
 
     renderizarTabla();
@@ -16,10 +16,10 @@ document.addEventListener("DOMContentLoaded", () => {
         form.addEventListener("submit", (e) => {
             e.preventDefault();
 
-            // Ejecutamos la validación del profesor
+            
             const productoValido = obtenerInfoProducto();
 
-            // Si los datos son válidos, se procesa en la lista
+            
             if (productoValido) {
                 guardarProducto(productoValido);
                 form.reset();

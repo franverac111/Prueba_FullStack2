@@ -1,10 +1,58 @@
-let cantidad = 0;
-let total = 0;
-let totalCarrito = 0;
+
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 function inyectarHeader(){
-    document.getElementById("header").innerHTML = '<div class="logo"><img src="https://static.wikia.nocookie.net/myl-tcg/images/f/f4/Myl-logo1-sf.png/revision/latest?cb=20240717144516&path-prefix=es" alt="icono tienda"></div><nav class="menu"><ul><li><a href="/index.html">Inicio</a></li><li><a href="/paginas/tienda.html">Productos</a></li><li><a href="/paginas/nosotros.html">Nosotros</a></li><li><a href="/paginas/blogs.html">Noticias</a></li><li><a href="/paginas/contacto.html">Contacto</a></li><li><a href="/paginas/login.html">Iniciar Sesión</a></li><li><a href="/paginas/registro.html">Registrarse</a></li></ul></nav>';
+    const headerElem = document.getElementById("header");
+    if (!headerElem) return;
+
+    // Detecta si la página actual está dentro de la carpeta "paginas"
+    
+    const enPaginas = window.location.pathname.includes("/paginas/");
+    
+    // Define las rutas según la profundidad donde esté ubicado el usuario
+    const prefix = enPaginas ? "./" : "paginas/";  //Control de Rutas Dinámicas (Lógica Preventiva):
+    const homePath = enPaginas ? "../index.html" : "index.html";  //Control de Rutas Dinámicas (Lógica Preventiva):
+    //Resolución Dinámica de Rutas: Garantiza la portabilidad del código para que funcione tanto en servidores locales (como Live Server) 
+    // como en entornos de producción (servidores reales), sin importar la profundidad de la carpeta.
+    //Palabras sencillas: Metodos para que la ruta sea encontrada si o si, sin importar en que carpeta estén. Por eso es preventivo
+
+    headerElem.innerHTML = `
+        <div class="logo">
+            <img src="https://static.wikia.nocookie.net/myl-tcg/images/f/f4/Myl-logo1-sf.png/revision/latest?cb=20240717144516&path-prefix=es" alt="icono tienda">
+        </div>
+        <nav class="menu">
+            <ul>
+                <li><a href="${homePath}">Inicio</a></li>
+                <li><a href="${prefix}tienda.html">Productos</a></li>
+                <li><a href="${prefix}nosotros.html">Nosotros</a></li>
+                <li><a href="${prefix}blogs.html">Noticias</a></li>
+                <li><a href="${prefix}contacto.html">Contacto</a></li>
+                <li><a href="${prefix}login.html">Iniciar Sesión</a></li>
+                <li><a href="${prefix}registro.html">Registrarse</a></li>
+            </ul>
+        </nav>
+    `;
+}
+
+function inyectarFooter() {
+    const footerElem = document.getElementById("footer");
+    if (!footerElem) return;
+
+    footerElem.innerHTML = `
+        <div class="footer-contenido">
+            <div class="footer-seccion">
+                <h3>El Caldero de la Abundancia</h3>
+                <p>&copy; 2026 Todos los derechos reservados.</p>
+                <p>Tu tienda de Singles número uno de Chile.</p>
+            </div>
+            <div class="footer-seccion">
+                <h4>Prueba 1</h4>
+                <p>Asignatura: Desarrollo Fullstack II (DSY1104)</p>
+                <p>Diseñado por: Eduardo Barrera, Reynaldo Cabello, Ángela Robles y Francisco Vera.</p>
+                <p>Duoc UC - 2026</p>
+            </div>
+        </div>
+    `;
 }
 
 function inyectarFooter(){
@@ -34,8 +82,17 @@ function agregarProducto(nombre, precio) {
 
     localStorage.setItem("carrito", JSON.stringify(carrito));
 
-    cantidad += 1;
-    total += precio;
+    actualizarResumen();
+}
+
+function actualizarResumen() {
+    let cantidad = 0;
+    let total = 0;
+
+    for (let producto of carrito) {
+        cantidad += producto.cantidad;
+        total += producto.precio * producto.cantidad;
+    }
 
     if (document.getElementById("cantidad")) {
         document.getElementById("cantidad").innerHTML = cantidad;
@@ -51,35 +108,70 @@ function mostrarCarrito() {
 
     if (carritoGuardado) {
         carrito = JSON.parse(carritoGuardado);
+    } else {
+        carrito = [];
+    }
 
+    if (carrito.length == 0) {
         document.getElementById("carrito").innerHTML =
-            "<div class='fila-carrito'>" +
-            "<strong>Producto</strong>" +
-            "<strong>Cantidad</strong>" +
-            "<strong>Precio</strong>" +
-            "<strong>Subtotal</strong>" +
-            "</div>";
+            "<p>El carrito está vacío.</p>";
+        return;
+    }
 
-        let totalCarrito = 0;
+    document.getElementById("carrito").innerHTML =
+        "<div class='fila-carrito encabezado'>" +
+        "<strong>Producto</strong>" +
+        "<strong>Cantidad</strong>" +
+        "<strong>Precio</strong>" +
+        "<strong>Subtotal</strong>" +
+        "<strong></strong>" +
+        "</div>";
 
-        for (let producto of carrito) {
-            let subtotal = producto.precio * producto.cantidad;
+    let totalCarrito = 0;
 
-            totalCarrito += subtotal;
+    for (let producto of carrito) {
+        let subtotal = producto.precio * producto.cantidad;
 
-            document.getElementById("carrito").innerHTML +=
-                "<div class='fila-carrito'>" +
-                "<span>" + producto.nombre + "</span>" +
-                "<span>" + producto.cantidad + "</span>" +
-                "<span>$" + producto.precio + "</span>" +
-                "<span>$" + subtotal + "</span>" +
-                "<button onclick='eliminarProducto(" + carrito.indexOf(producto) + ")'>Eliminar</button>" +
-                "</div>";
-        }
+        totalCarrito += subtotal;
 
         document.getElementById("carrito").innerHTML +=
-            "<h2>Total: $" + totalCarrito + "</h2>";
+            "<div class='fila-carrito'>" +
+            "<span>" + producto.nombre + "</span>" +
+            "<span>" + producto.cantidad + "</span>" +
+            "<span>$" + producto.precio + "</span>" +
+            "<span>$" + subtotal + "</span>" +
+            "<button onclick='eliminarProducto(" + carrito.indexOf(producto) + ")'>Eliminar</button>" +
+            "</div>";
     }
+
+    document.getElementById("carrito").innerHTML +=
+        "<div class='total-carrito'>" +
+        "<h2>Total: $" + totalCarrito + "</h2>" +
+        "<button onclick='vaciarCarrito()'>Vaciar carrito</button>" +
+        "<button>Ir a pagar</button>" +
+        "</div>";
+}
+
+function eliminarProducto(indice) {
+    carrito[indice].cantidad -= 1;
+
+    if (carrito[indice].cantidad == 0) {
+        carrito.splice(indice, 1);
+    }
+
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+
+    mostrarCarrito();
+    actualizarResumen();
+}
+
+function vaciarCarrito() {
+    carrito = [];
+
+    localStorage.removeItem("carrito");
+
+    mostrarCarrito();
+    actualizarResumen();
 }
 
 if (document.getElementById("carrito")) {
@@ -149,4 +241,7 @@ if (loginForm) {
 
     });
 
+}
+if (document.getElementById("cantidad")) {
+    actualizarResumen();
 }
