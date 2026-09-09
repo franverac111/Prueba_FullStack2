@@ -230,9 +230,6 @@ if (document.getElementById("cantidad")) {
     actualizarResumen();
 }
 
-<<<<<<< HEAD
-
-
 // Renderizado y desplazamiento
 
 let indiceCarrusel = 0;
@@ -275,10 +272,9 @@ function moverCarrusel(direccion) {
 
 document.addEventListener("DOMContentLoaded", () => {
     cargarCarrusel();
-=======
-// 1. Iniciar usuario Admin para poder agrefgar cartas al inventario
-(function inicializarAdmin() {
-    const usuarios = JSON.parse(localStorage.getItem("tcg_usuarios")) || [];
+});
+function inicializarAdmin() { 
+    const usuarios = JSON.parse(localStorage.getItem("tcg_usuarios")) || []; 
     const existeAdmin = usuarios.some(u => u.correo === "admin@duoc.cl");
 
     if (!existeAdmin) {
@@ -290,12 +286,27 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         localStorage.setItem("tcg_usuarios", JSON.stringify(usuarios));
     }
-})();
+}
 
-// 2. Control de Inicio de Sesión
-document.addEventListener("DOMContentLoaded", () => {
+// =============================
+// EVENTO PRINCIPAL DE CARGA (DOM)
+// =============================
+document.addEventListener("DOMContentLoaded", () => { 
+    // Inyección de componentes globales
+    inyectarHeader(); 
+    inyectarFooter();
+
+    // Inicializaciones de componentes y estados
+    inicializarAdmin();
+    cargarCarrusel();
+    actualizarResumen();
+
+    if (document.getElementById("carrito")) { 
+        mostrarCarrito(); 
+    }
+
+    // Control del formulario de Inicio de Sesión
     const loginForm = document.getElementById("loginForm");
-
     if (loginForm) {
         loginForm.addEventListener("submit", (e) => {
             e.preventDefault();
@@ -307,7 +318,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const usuarioValido = usuarios.find(u => u.correo === correo && u.password === password);
 
             if (usuarioValido) {
-                // Guarda la sesión con la clave exactas que lee scriptAgregar.js
                 const sesion = {
                     correo: usuarioValido.correo,
                     rol: usuarioValido.rol,
@@ -317,7 +327,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 localStorage.setItem("tcg_sesion", JSON.stringify(sesion));
 
                 if (sesion.rol === "admin") {
-                    // Redirección entre archivos de la misma carpeta /paginas/
                     window.location.href = "agregar.html"; 
                 } else {
                     window.location.href = "../index.html";
@@ -327,5 +336,4 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
->>>>>>> 35acfe5fc9f9155a71cf8263b6ce2905b674e8ce
 });
