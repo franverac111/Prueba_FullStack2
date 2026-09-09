@@ -25,5 +25,19 @@ function renderizarCatalogo() {
         contenedor.appendChild(divProducto);
     });
 
-
 }
+
+function mostrarDetalle(nombre, imagen, precio, descripcion) {
+    document.getElementById("detalle-imagen").src = imagen;
+    document.getElementById("detalle-imagen").alt = nombre;
+
+    document.getElementById("detalle-nombre").innerHTML = nombre;
+    document.getElementById("detalle-precio").innerHTML = "$" + precio;
+    document.getElementById("detalle-descripcion").innerHTML = descripcion;
+
+    document.getElementById("detalle-producto").classList.remove("detalle-oculto");
+}
+
+document.getElementById("cerrar-detalle").onclick = function() {
+    document.getElementById("detalle-producto").classList.add("detalle-oculto");
+};

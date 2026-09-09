@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
     <link rel="stylesheet" href="../estilos/style.css">
 </head>
 <body>
@@ -18,55 +22,74 @@
        </section>
        <section id="productos">
             <div class="producto">
-                <img src="https://cartasmitos.cl/wp-content/uploads/2021/08/96-4.jpg" alt="carta escila">
+                <img src="https://cartasmitos.cl/wp-content/uploads/2021/08/96-4.jpg"
+                     alt="carta escila"
+                     onclick="mostrarDetalle('Escila', this.src, 50000, 'Carta de Escila de Mitos y Leyendas')">
                 <h2>Escila</h2>
                 <p>$50000</p>
                 <button onclick="agregarProducto('Escila',50000)">agregar</button>
             </div>
             <div class="producto">
-                <img src="https://cartasmitos.cl/wp-content/uploads/2021/07/9-7.jpg" alt="carta El gran zeus">
+                <img src="https://cartasmitos.cl/wp-content/uploads/2021/07/9-7.jpg" alt="carta El gran zeus"
+                onclick="mostrarDetalle('Escila', this.src, 20000, 'Carta de El gran zeus dios del rayo')">
                 <h2>El gran zeus</h2>
                 <p>$20000</p>
                 <button onclick="agregarProducto('El gran Zeus',20000)">agregar</button>
             </div>
             <div class="producto">
-                <img src="https://cartasmitos.cl/wp-content/uploads/2021/08/278.jpg" alt="carta Mascara de oro">
+                <img src="https://cartasmitos.cl/wp-content/uploads/2021/08/278.jpg" alt="carta Mascara de oro"
+                     onclick="mostrarDetalle('Escila', this.src, 30000, 'Carta de Mascara de oro de Mitos y Leyendas')">
                 <h2>Mascara de oro</h2>
                 <p>$30000</p>
                 <button onclick="agregarProducto('Mascara de oro',30000)">agregar</button>
             </div>
             <div class="producto">
-                <img src="https://cartasmitos.cl/wp-content/uploads/2021/06/31-8-600x600.jpg" alt="carta Atlas">
+                <img src="https://cartasmitos.cl/wp-content/uploads/2021/06/31-8-600x600.jpg" alt="carta Atlas"
+                onclick="mostrarDetalle('Escila', this.src, 10000, 'Carta de Atlas de Mitos y Leyendas')">
                 <h2>Atlas</h2>
                 <p>$10000</p>
                 <button onclick="agregarProducto('Atlas',10000)">agregar</button>
             </div>
             <div class="producto">
-                <img src="https://http2.mlstatic.com/D_NQ_NP_622279-MLC96178730851_102025-O.webp" alt="carta Amon-ra">
+                <img src="https://http2.mlstatic.com/D_NQ_NP_622279-MLC96178730851_102025-O.webp" alt="carta Amon-ra"
+                onclick="mostrarDetalle('Escila', this.src, 5000, 'Carta de Amon-ra de Mitos y Leyendas')">
                 <h2>Amon-ra</h2>
                 <p>$5000</p>
                 <button onclick="agregarProducto('Amon-ra',5000)">agregar</button>
             </div>
             <div class="producto">
-                <img src="https://http2.mlstatic.com/D_NQ_NP_989097-MLC95736622666_102025-O.webp" alt="carta monru">
+                <img src="https://http2.mlstatic.com/D_NQ_NP_989097-MLC95736622666_102025-O.webp" alt="carta monru"
+                onclick="mostrarDetalle('Escila', this.src, 15000, 'Carta de Monru de Mitos y Leyendas')">
                 <h2>Monru</h2>
                 <p>$15000</p>
                 <button onclick="agregarProducto('Monru',15000)">agregar</button>
             </div>
             <div class="producto">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNrWF1mP10PNhKaG9u8PPpXa3eWZpvfWSaWFy_Y23hM_iAcVn4wtq3PI6I&s=10" alt="carta Cuz templaria">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNrWF1mP10PNhKaG9u8PPpXa3eWZpvfWSaWFy_Y23hM_iAcVn4wtq3PI6I&s=10" alt="carta Cuz templaria"
+                onclick="mostrarDetalle('Escila', this.src, 25000, 'Carta de Cruz templaria de Mitos y Leyendas')">
                 <h2>Cruz templaria</h2>
                 <p>$25000</p>
                 <button onclick="agregarProducto('Cruz templaria',25000)">agregar</button>
             </div>
             <div class="producto">
-                <img src="https://labode.cl/cdn/shop/products/2w_800x.jpg?v=1526438107" alt="carta Cronos">
+                <img src="https://labode.cl/cdn/shop/products/2w_800x.jpg?v=1526438107" alt="carta Cronos"
+                onclick="mostrarDetalle('Escila', this.src, 4000, 'Carta de Cronos de Mitos y Leyendas')">
                 <h2>Cronos</h2>
                 <p>$4000</p>
                 <button onclick="agregarProducto('Cronos',4000)">agregar</button>
             </div>
         </section>
    </main>
+
+    <div id="detalle-producto" class="detalle-oculto">
+        <div class="detalle-contenido">
+            <button id="cerrar-detalle">X</button>
+            <img id="detalle-imagen" src="" alt="">
+            <h2 id="detalle-nombre"></h2>
+            <p id="detalle-precio"></p>
+            <p id="detalle-descripcion"></p>
+        </div>
+    </div>
 
    <footer id="footer"></footer>
 

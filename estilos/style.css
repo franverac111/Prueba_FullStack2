@@ -30,6 +30,8 @@ footer{
     font-family: 'MedievalSharp', serif;
 }
 
+
+
 .footer-contenido {
     display: flex;
     flex-wrap: wrap;
@@ -67,14 +69,36 @@ main h1{
     width: 150px;
     height: 150px;
     object-fit: contain;
+    cursor: pointer;
 }
 
-#productos{
-    display: flex;
-    flex-wrap: wrap;
+#productos {
+    display: grid;
+    grid-template-columns: repeat(4, 250px);
     justify-content: center;
-    gap: 20px;
-    padding: 20px;
+    gap: 25px;
+    padding: 30px;
+}
+
+.producto button {
+    background-color: #D4AF37;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.producto button:hover {
+    background-color: #fff;
+}
+
+
+
+.producto p {
+    color: #D4AF37;
+    font-weight: bold;
 }
 
 #resumen {
@@ -110,7 +134,7 @@ main h1{
     text-decoration: none;
     font-family: Georgia, 'Times New Roman', serif;
     font-size: 1.1rem;
-    color: #070505;
+    color: #fff;
     font-weight: bold;
     transition: color 0.3s ease;
 }
@@ -139,6 +163,7 @@ main h1{
     height: auto;
     display: block;
     transition: transform 0.2s ease;
+    filter: brightness(0) invert(1);
 }
 
 .carrito-header a:hover .icono-carrito {
@@ -212,12 +237,14 @@ main h1{
 
 #carrito {
     width: 80%;
-    max-width: 900px;
+    max-width: 1100px;
     margin: 30px auto;
-    padding: 25px;
-    border: 1px solid #ccc;
+    padding: 30px;
+    background-color: #1a1a1a;
+    border: 1px solid #D4AF37;
     border-radius: 15px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    color: #fff;
 }
 
 /* ============================= */
@@ -232,6 +259,21 @@ main h1{
     border-bottom: 1px solid #ddd;
 }
 
+.fila-carrito button {
+    background-color: #D4AF37;
+    color: #000;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.fila-carrito button:hover {
+    background-color: #fff;
+}
+
+
 .encabezado {
     border-bottom: 2px solid #ccc;
 }
@@ -239,6 +281,25 @@ main h1{
 .total-carrito {
     text-align: right;
     padding-top: 20px;
+}
+
+.total-carrito h2 {
+    color: #D4AF37;
+}
+
+.total-carrito button {
+    background-color: #D4AF37;
+    color: #000;
+    border: none;
+    padding: 10px 18px;
+    margin-left: 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.total-carrito button:hover {
+    background-color: #fff;
 }
 
 .login-container {
@@ -771,5 +832,42 @@ article.card:hover .card-image img {
 
 .card-noticia-preview .card-content {
     padding: 20px;
+}
+
+/* Estilo detalle producto
+========================= */
+
+.detalle-oculto {
+    display: none !important;
+}
+
+#detalle-producto {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#cerrar-detalle {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+#detalle-imagen {
+    width: 500px;
+    height: 600px;
+    object-fit: contain;
 }
 
