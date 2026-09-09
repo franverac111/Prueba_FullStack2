@@ -355,6 +355,7 @@ main h1{
     margin-bottom: 0;
 }
 
+<<<<<<< HEAD
 
 /* Estilos para el carrusel */
 
@@ -737,3 +738,24 @@ article.card:hover .card-image img {
     }
 }
 
+=======
+.header-admin {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.loginout-button {
+    width: 10%;
+    padding: 13px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: white;
+    color: #000;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+>>>>>>> 35acfe5fc9f9155a71cf8263b6ce2905b674e8ce

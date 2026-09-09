@@ -230,6 +230,7 @@ if (document.getElementById("cantidad")) {
     actualizarResumen();
 }
 
+<<<<<<< HEAD
 
 
 // Renderizado y desplazamiento
@@ -274,4 +275,57 @@ function moverCarrusel(direccion) {
 
 document.addEventListener("DOMContentLoaded", () => {
     cargarCarrusel();
+=======
+// 1. Iniciar usuario Admin para poder agrefgar cartas al inventario
+(function inicializarAdmin() {
+    const usuarios = JSON.parse(localStorage.getItem("tcg_usuarios")) || [];
+    const existeAdmin = usuarios.some(u => u.correo === "admin@duoc.cl");
+
+    if (!existeAdmin) {
+        usuarios.push({
+            correo: "admin@duoc.cl",
+            password: "admin",
+            rol: "admin",
+            nombre: "Administrador Duoc"
+        });
+        localStorage.setItem("tcg_usuarios", JSON.stringify(usuarios));
+    }
+})();
+
+// 2. Control de Inicio de Sesión
+document.addEventListener("DOMContentLoaded", () => {
+    const loginForm = document.getElementById("loginForm");
+
+    if (loginForm) {
+        loginForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            const correo = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+
+            const usuarios = JSON.parse(localStorage.getItem("tcg_usuarios")) || [];
+            const usuarioValido = usuarios.find(u => u.correo === correo && u.password === password);
+
+            if (usuarioValido) {
+                // Guarda la sesión con la clave exactas que lee scriptAgregar.js
+                const sesion = {
+                    correo: usuarioValido.correo,
+                    rol: usuarioValido.rol,
+                    nombre: usuarioValido.nombre
+                };
+
+                localStorage.setItem("tcg_sesion", JSON.stringify(sesion));
+
+                if (sesion.rol === "admin") {
+                    // Redirección entre archivos de la misma carpeta /paginas/
+                    window.location.href = "agregar.html"; 
+                } else {
+                    window.location.href = "../index.html";
+                }
+            } else {
+                alert("Correo o contraseña incorrectos.");
+            }
+        });
+    }
+>>>>>>> 35acfe5fc9f9155a71cf8263b6ce2905b674e8ce
 });
