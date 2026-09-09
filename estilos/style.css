@@ -98,7 +98,7 @@ main h1{
 
 }
 
-.menu ul{
+.menu-navegacion ul{
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -106,7 +106,7 @@ main h1{
     gap: 20px;
 }
 
-.menu a{
+.menu-navegacion a{
     text-decoration: none;
     font-family: Georgia, 'Times New Roman', serif;
     font-size: 1.1rem;
@@ -115,27 +115,78 @@ main h1{
     transition: color 0.3s ease;
 }
 
-.menu a:hover{
+.menu-navegacion a:hover{
     color: #D4AF37;
+}
+
+.carrito-header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.carrito-header a {
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+}
+
+.icono-carrito {
+    width: 32px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.2s ease;
+}
+
+.carrito-header a:hover .icono-carrito {
+    transform: scale(1.1);
+}
+
+#contador-carrito {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+    background-color: #e74c3c;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 2px 6px;
+    min-width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 @media screen and (max-width: 768px) {
     
     #header {
+        
         flex-direction: column;    
         gap: 15px;                 
         padding: 15px 10px;
+        overflow: hidden;
     }
 
     #header h1 {
+        font-size: 1.5rem;         
+        text-align: center;
         font-size: 1.8rem;         
     }
 
     .menu-navegacion ul {
+        flex-wrap: wrap;
         flex-direction: column;
         align-items: center;
         gap: 12px;
         width: 100%;
+        overflow-wrap: break-word;
     }
 
 
@@ -144,6 +195,18 @@ main h1{
         padding: 8px 16px;
         width: 100%;
         text-align: center;
+    }
+
+    .icono-carrito {
+        width: 28px;
+    }
+
+    #contador-carrito {
+        font-size: 0.7rem;
+        min-width: 16px;
+        height: 16px;
+        top: -5px;
+        right: -8px;
     }
 }
 
