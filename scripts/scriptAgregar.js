@@ -8,6 +8,24 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = "login.html"; // Ventana de login que debe hacer angela
         return; // Detiene la ejecución del código
     }
+
+        //instrucciones para cerrar sesión
+    const btnCerrarSesion = document.getElementById("btnCerrarSesion");
+
+    if (btnCerrarSesion) {
+    btnCerrarSesion.addEventListener("click", () => {
+        
+        const confirmar = confirm("¿Estás seguro de que deseas cerrar sesión?");
+        
+        if (confirmar) {
+            // Elimina los datos de la sesión
+            localStorage.removeItem("tcg_sesion");
+            
+            // Redirige al login
+            window.location.href = "login.html";
+        }
+    });
+}
     const form = document.getElementById("form-producto");
 
     renderizarTabla();
@@ -28,6 +46,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+
+    
 });
 
 // Función para guardar en LocalStorage

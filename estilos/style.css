@@ -292,3 +292,22 @@ main h1{
     margin-bottom: 0;
 }
 
+.header-admin {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.loginout-button {
+    width: 10%;
+    padding: 13px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: white;
+    color: #000;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
