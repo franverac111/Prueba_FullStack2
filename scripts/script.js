@@ -229,3 +229,49 @@ if (loginForm) {
 if (document.getElementById("cantidad")) {
     actualizarResumen();
 }
+
+
+
+// Renderizado y desplazamiento
+
+let indiceCarrusel = 0;
+
+function cargarCarrusel() {
+    const pista = document.getElementById("carrusel-pista");
+    if (!pista) return;
+
+    pista.innerHTML = productos.map(prod => `
+        <article class="tarjeta-producto">
+            <img src="${prod.img}" alt="${prod.nombre}">
+            <h3>${prod.nombre}</h3>
+            <p class="precio">$${prod.precio}</p>
+            <a href="paginas/tienda.html" class="btn-ver">Ver en Tienda</a>
+        </article>
+    `).join('');
+}
+
+function moverCarrusel(direccion) {
+    const pista = document.getElementById("carrusel-pista");
+    if (!pista) return;
+
+    if (typeof productos === "undefined" || !productos.length) return;
+
+    const totalProductos = productos.length;
+    const anchoTarjeta = 220;
+
+  
+    indiceCarrusel += direccion;
+
+    // --- LÓGICA CÍCLICA ---
+    if (indiceCarrusel >= totalProductos) {
+        indiceCarrusel = 0; // Al avanzar más allá del último producto, regresa al primero
+    } else if (indiceCarrusel < 0) {
+        indiceCarrusel = totalProductos - 1; // Al retroceder antes del primer producto, salta al último
+    }
+
+    pista.style.transform = `translateX(-${indiceCarrusel * anchoTarjeta}px)`;
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    cargarCarrusel();
+});

@@ -4,12 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
     <link rel="stylesheet" href="../estilos/style.css">
 
 </head>
 <body>
     <header id="header"></header>
-    <h1>Contacto</h1>
+        <main class="container contenedor-contacto my-5 px-3">
+        <section class="box-contacto">
+            <h2 class="title is-3 has-text-centered mb-2">Formulario de Contacto</h2>
+            <p class="has-text-centered has-text-grey-light mb-5">
+                ¿Tienes dudas sobre algún producto o buscas una carta en específico? Envíanos un mensaje interno.
+            </p>
+
+            <form id="form-contacto" novalidate>
+                
+                <div class="field mb-4">
+                    <label class="label label-contacto" for="nombre">Nombre Completo *</label>
+                    <div class="control">
+                        <input class="input input-contacto" type="text" id="nombre" name="nombre" placeholder="Ej: Juan Pérez" maxlength="100" required>
+                    </div>
+                    <p class="help is-danger d-none" id="err-nombre">El nombre es obligatorio (máximo 100 caracteres).</p>
+                </div>
+
+                <div class="field mb-4">
+                    <label class="label label-contacto" for="correo">Correo Electrónico *</label>
+                    <div class="control">
+                        <input class="input input-contacto" type="email" id="correo" name="correo" placeholder="usuario@duoc.cl / gmail.com" maxlength="100" required>
+                    </div>
+                    <p class="help is-danger d-none" id="err-correo">Ingresa un correo válido (@duoc.cl, @profesor.duoc.cl o @gmail.com).</p>
+                </div>
+
+                <div class="field mb-5">
+                    <label class="label label-contacto" for="comentario">Comentario o Mensaje *</label>
+                    <div class="control">
+                        <textarea class="textarea textarea-contacto" id="comentario" name="comentario" rows="4" placeholder="Escribe tu mensaje aquí..." maxlength="500" required></textarea>
+                    </div>
+                    <p class="help is-danger d-none" id="err-comentario">El mensaje es obligatorio (máximo 500 caracteres).</p>
+                </div>
+
+                <div class="field has-text-centered">
+                    <button type="submit" class="button btn-enviar-contacto">Enviar Mensaje</button>
+                </div>
+
+                <div id="mensaje-exito" class="notification is-success is-light mt-4 d-none">
+                    ¡Tu mensaje ha sido enviado con éxito! Te responderemos a la brevedad.
+                </div>
+
+            </form>
+        </section>
+    </main>
     <footer id="footer"></footer>    
 </body>
 <script src="../scripts/script.js"></script>
