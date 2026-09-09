@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
     <link rel="stylesheet" href="estilos/style.css">
 </head>
 <body>
@@ -26,6 +27,49 @@
                 <button id="btn-next" onclick="moverCarrusel(1)">Siguiente &rang;</button>
             </div>
         </section>
+
+        <section class="seccion-noticias-home container my-5 px-3">
+        <div class="has-text-centered mb-5">
+            <h2 class="title is-2 has-text-warning">Últimas Noticias y Datos Curiosos</h2>
+            <p class="subtitle is-6 has-text-grey-light">Enterate de las novedades y estrategias del mundo de Mitos y Leyendas</p>
+        </div>
+
+        <div class="columns is-multiline">
+            <article class="column is-6">
+                <div class="card card-noticia-preview">
+                    <div class="card-image">
+                        <figure class="image is-16by9">
+                            <img src="https://www.icarito.cl/wp-content/uploads/2009/12/614046.jpg" alt="El Trauco en Mitos y Leyendas">
+                        </figure>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="title is-4 has-text-warning">Dato Curioso #1: El Trauco</h3>
+                        <p class="has-text-grey-light">Conoce la historia de una de las cartas más icónicas de las primeras ediciones y su impacto en la mitología chilota.</p>
+                        <a href="paginas/blogs.html" class="button is-warning is-outlined mt-3">Leer más</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="column is-6">
+                <div class="card card-noticia-preview">
+                    <div class="card-image">
+                        <figure class="image is-16by9">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTR6KZGoZanXLDiHh2l85gywXcVDvg5oG9kG9cDFUcfrw&s=10" alt="Estrategias con Dragones">
+                        </figure>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="title is-4 has-text-warning">Dato Curioso #2: Estrategias con Dragones</h3>
+                        <p class="has-text-grey-light">Descubre las mejores combinaciones de mazos y aliados legendarios para dominar tus partidas este semestre.</p>
+                        <a href="paginas/blogs.html" class="button is-warning is-outlined mt-3">Leer más</a>
+                    </div>
+                </div>
+            </article>
+        </div>
+
+        <div class="has-text-centered mt-5">
+            <a href="paginas/blogs.html" class="button is-warning is-medium">Ver todas las noticias</a>
+        </div>
+    </section>
     </main>
 
     <footer id="footer">
