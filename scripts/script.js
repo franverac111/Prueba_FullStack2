@@ -2,8 +2,16 @@
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 
+function obtenerPrefijo() {
+    return window.location.pathname.includes('/paginas/') ? '../' : '';
+}
 function inyectarHeader() {
-    document.getElementById("header").innerHTML = `
+    const headerElement = document.getElementById("header");
+    if (!headerElement) return;
+
+    const prefijo = obtenerPrefijo();
+
+    headerElement.innerHTML = `
         <div class="logo">
             <img src="https://static.wikia.nocookie.net/myl-tcg/images/f/f4/Myl-logo1-sf.png/revision/latest?cb=20240717144516&path-prefix=es" alt="icono tienda">
         </div>
@@ -12,21 +20,20 @@ function inyectarHeader() {
         
         <nav class="menu-navegacion">
             <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="paginas/productos.html">Productos</a></li>
-                <li><a href="paginas/nosotros.html">Nosotros</a></li>
-                <li><a href="paginas/blogs.html">Noticias</a></li>
-                <li><a href="paginas/contacto.html">Contacto</a></li>
-                <li><a href="paginas/login.html">Iniciar Sesión</a></li>
-                <li><a href="paginas/registro.html">Registrarse</a></li>
-                <li><a href="paginas/carrito.html"></a></li>
+                <li><a href="${prefijo}index.html">Inicio</a></li>
+                <li><a href="${prefijo}paginas/tienda.html">Productos</a></li>
+                <li><a href="${prefijo}paginas/nosotros.html">Nosotros</a></li>
+                <li><a href="${prefijo}paginas/blogs.html">Noticias</a></li>
+                <li><a href="${prefijo}paginas/contacto.html">Contacto</a></li>
+                <li><a href="${prefijo}paginas/login.html">Iniciar Sesión</a></li>
+                <li><a href="${prefijo}paginas/carrito.html"></a></li>
             </ul>
         </nav>
 
+
         <div class="carrito-header">
-            <a href="paginas/carrito.html">
+            <a href="${prefijo}paginas/carrito.html">
                 <img src="https://cdn-icons-png.flaticon.com/512/107/107831.png" alt="Carrito de compras" class="icono-carrito">
-                <span id="contador-carrito">0</span>
             </a>
         </div>
     `;

@@ -167,6 +167,7 @@ main h1{
 @media screen and (max-width: 768px) {
     
     #header {
+        
         flex-direction: column;    
         gap: 15px;                 
         padding: 15px 10px;
@@ -180,6 +181,7 @@ main h1{
     }
 
     .menu-navegacion ul {
+        flex-wrap: wrap;
         flex-direction: column;
         align-items: center;
         gap: 12px;
